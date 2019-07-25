@@ -7,6 +7,15 @@ function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   let [homeScore, setHomeScore] = useState(0);
   let [awayScore, setAwayScore] = useState(0);
+
+  function handleAddScore(teamName, scoreToAdd) {
+    if (teamName === "home") {
+      setHomeScore((homeScore += scoreToAdd));
+    } else if (teamName === "away") {
+      setAwayScore((awayScore += scoreToAdd));
+    }
+  }
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -31,16 +40,14 @@ function App() {
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
           <button
             className="homeButtons__touchdown"
-            onClick={() => {
-              setHomeScore((homeScore += 7));
-            }}
+            onClick={() => handleAddScore("home", 7)}
           >
             Home Touchdown
           </button>
           <button
             className="homeButtons__fieldGoal"
             onClick={() => {
-              setHomeScore((homeScore += 3));
+              handleAddScore("home", 3);
             }}
           >
             Home Field Goal
@@ -49,17 +56,13 @@ function App() {
         <div className="awayButtons">
           <button
             className="awayButtons__touchdown"
-            onClick={() => {
-              setAwayScore((awayScore += 7));
-            }}
+            onClick={() => handleAddScore("away", 7)}
           >
             Away Touchdown
           </button>
           <button
             className="awayButtons__fieldGoal"
-            onClick={() => {
-              setAwayScore((awayScore += 3));
-            }}
+            onClick={() => handleAddScore("away", 3)}
           >
             Away Field Goal
           </button>
